@@ -1,0 +1,27 @@
+código da página HTML padrão:
+https://getbootstrap.com/docs/5.2/getting-started/introduction/
+
+jquery:
+https://jquery.com/download/
+
+imagemap:
+https://www.w3schools.com/html/html_images_imagemap.asp
+
+gerador de mapas online:
+https://www.image-map.net/
+
+elemento sobre imagem:
+https://www.w3schools.com/howto/howto_css_image_text.asp
+
+imagem sobre outra imagem:
+https://stackoverflow.com/questions/1345210/image-over-image-css
+
+bordas em imagem:
+https://getbootstrap.com/docs/5.0/utilities/borders/
+
+entrada e saída do mouse, em imagens:
+https://www.w3schools.com/jsref/event_onmouseleave.asp
+https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_onmouseenter
+
+como mudar uma imagem (carregar outra imagem):
+https://stackoverflow.com/questions/554273/changing-the-image-source-using-jquery

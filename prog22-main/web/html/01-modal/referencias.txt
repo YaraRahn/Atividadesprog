@@ -1,0 +1,8 @@
+código da janela modal:
+https://getbootstrap.com/docs/5.2/components/modal/
+
+código da página HTML padrão:
+https://getbootstrap.com/docs/5.2/getting-started/introduction/
+
+jquery:
+https://jquery.com/download/
