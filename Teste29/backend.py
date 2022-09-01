@@ -56,9 +56,29 @@ def operacao():
 def contador():
     return str(cont)
 
-@app.route("/info")
-def nomes():
-    return "Alana, Manu, Lari, Liriel, Yara"
+@app.route("/rota1")
+def rota1():
+    resposta = jsonify({"mensagem":"esta é a primeira rota"})
+    resposta.headers.add("Access-Control-Allow-Origin", "*")
+    return resposta
+
+@app.route("/rota2")
+def rota2():
+    resposta = jsonify({"mensagem":"rota dois na área"})
+    resposta.headers.add("Access-Control-Allow-Origin", "*")
+    return resposta
+
+@app.route("/rota3")
+def rota3():
+    resposta = jsonify({"mensagem":"opa temos uma terceira rota"})
+    resposta.headers.add("Access-Control-Allow-Origin", "*")
+    return resposta
+
+@app.route("/rota4")
+def rota4():
+    resposta = jsonify({"mensagem":"Alana, Manu, Lari, Liriel, Yara"})
+    resposta.headers.add("Access-Control-Allow-Origin", "*")
+    return resposta
 
 
 #app.run(debug=True)

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+
+<body>
+    <h1>Exemplo de "for" com ajax: assincronismo </h1>
+
+    <button id="btVai">Manda ver!</button>
+
+    <br><br>
+
+    <span id="consultando">sites a serem consultados</span>
+    <hr>
+    <span id="resultado">resultados</span>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).on("click", "#btVai", function () {
+            // lista de sites a ser percorrida
+            var sites = [
+                'http://localhost:5000/rota1',
+                'http://localhost:5000/rota2'
+            ];
+
+            // opcao 2
+            // descomente o código abaixo para realizar
+            // uma montagem dinâmica da lista de
+            // sites da percorrer
+
+            
+            var sites = [];
+            //191.52.7.70 a 191.52.7.80
+            for (i = 70; i< 81; i++) {
+                sites.push("http://191.52.7."+i+":5000/rota4");
+            }
+            
+            
+            $("#resultado").empty();
+            $("#consultando").empty();
+            for (s of sites) {
+                $("#consultando").append("consultando: "+s+" | ");
+                $.ajax({
+                    url: s,
+                    success: function (resposta) {
+                        $("#resultado").append("<b> | "+resposta.mensagem+"</b>");
+                    },
+                    error: function() {
+                        $("#resultado").append('erro ao acessar: '+s);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
