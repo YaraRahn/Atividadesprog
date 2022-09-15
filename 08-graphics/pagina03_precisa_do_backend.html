@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+
+<body>
+  <h1>Exemplo de gráfico obtendo dados do servidor</h1>
+
+  Lembre-se de executar o backend, pois é dele que advém os valores a serem exibidos no gráfico.
+
+  <div id="minhadiv">
+  </div>
+
+  <!-- carga da biblioteca javascript de gráficos -->
+  <script src='https://cdn.plot.ly/plotly-2.14.0.min.js'></script>
+
+  <!-- carga do jquery -->
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+  <!-- meu script personalizado -->
+  <script>
+
+    // chamar o backend
+    $.ajax({
+      url: 'http://localhost:5000/obter_dados',
+      type: 'GET',
+      dataType: 'json', // dados recebidos em json
+      success: exibirdados,
+      error: function () {
+        alert("ERRO ao contactar back-end, verifique :-/ o backend está sendo executado?");
+      }
+    });
+    function exibirdados(retorno) {
+      if (retorno.resultado == "ok") { // a operação deu certo?
+        // obter valores enviados pelo backend
+        var x = retorno.detalhes.x;
+        var y = retorno.detalhes.y;
+        var type = retorno.detalhes.type;
+
+        // referência de conversão json para vetor (array):
+        // https://stackoverflow.com/questions/13272406/convert-string-with-commas-to-array
+        x = x.replace(/'/g, '"'); // substituir aspas simples por duplas, para ficar json raiz :-)
+        y = y.replace(/'/g, '"');
+        var xok = JSON.parse(x);
+        var yok = JSON.parse(y);
+
+        //console.log(xok); console.log(yok); console.log(type);
+
+        var data = [
+          {
+            x: xok,
+            y: yok,
+            type: type
+          }
+        ];
+        Plotly.newPlot('minhadiv', data);
+
+      } else {
+        alert("ERRO ao obter dados do backend: " + retorno.resultado + ":" + retorno.detalhes);
+      }
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+    crossorigin="anonymous"></script>
+
+</body>
+
+</html>
